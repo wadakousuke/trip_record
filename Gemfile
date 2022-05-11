@@ -61,5 +61,3 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
-gem "enum_help"
-gem 'rails-i18n'
