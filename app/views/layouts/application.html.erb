@@ -10,7 +10,90 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+ <body class="d-flex flex-column vh-100">
+     <header class="shadow-sm" >
+       <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+        <h1><%= link_to "TRIP_RECORD" , root_path %></h1>
+         <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+           <li class="nav-item">
+             <%= link_to "投稿一覧" , admin_posts_path, class: "btn btn-light border mr-3" %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "ユーザー一覧" , admin_users_path, class: "btn btn-light border mr-3" %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "カテゴリ一覧" , admin_categories_path, class: "btn btn-light border mr-3"  %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "ログアウト" , destroy_admin_session_path, method: :delete, class: "btn btn-light border"%>
+           </li>
+          <% else %>
+          <% if user_signed_in? %>
+           <li class="nav-item">
+             <%= link_to "マイページ" , root_path, class: "btn btn-light border mr-3" %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "新規投稿" , new_post_path, class: "btn btn-light border mr-3" %>
+           </li>
+            <li class="nav-item">
+             <%= link_to "投稿一覧" , posts_path, class: "btn btn-light border mr-3" %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "ログアウト" , destroy_user_session_path, method: :delete, class: "btn btn-light border mr-3"   %>
+           </li>
+          <% else %>
+           <li class="nav-item">
+             <%= link_to "About" , homes_about_path, class: "btn btn-light border mr-3"   %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "投稿一覧" , posts_path, class: "btn btn-light border mr-3" %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "新規登録" , new_user_registration_path, class: "btn btn-light border mr-3"  %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "ログイン" , new_user_session_path, class: "btn btn-light border mr-3"   %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "管理者ログイン" , new_admin_session_path, class: "btn btn-light border mr-3"  %>
+           </li>
+           <li class="nav-item">
+             <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post,class: "btn btn-light border mr-3"  %>
+           </li>
+          <% end %>
+          <% end %>
+         </ul>
+      </div>
+     </nav>
+    </header>
+    <main >
+      <%= yield %>
+    </main>
+
+  <footer>
+    <div class="container mt-5 fixed-bottom ">
+      <div class="row">
+        <p>@trip_record</p>
+         <% if admin_signed_in? %>
+          <% else %>
+          <% if user_signed_in? %>
+          <% else %>
+        <ul class="navbar-nav ml-auto">
+           <li class="nav-item">
+             <%= link_to "管理者ログイン" , new_admin_session_path, class: "btn btn-light border mr-3"  %>
+           </li>
+           <li class="nav-item">
+             <%= link_to "管理者登録" , new_admin_registration_path, class: "btn btn-light border mr-3"  %>
+           </li>
+        </ul>
+        <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </footer>
+</html>
+
 </html>

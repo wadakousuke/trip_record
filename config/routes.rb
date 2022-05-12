@@ -7,15 +7,22 @@ Rails.application.routes.draw do
     patch 'users/withdraw' => "users#withdraw", as:"withdraw"
     root to:'homes#top'
     get 'homes/about'
+    post '/guests/guest_sign_in', to: 'guests#new_guest'
   end
   namespace :admin do
     resources :posts, except:[:new, :create]
     resources :categories, only:[:update, :show, :index, :edit]
     resources :users, except:[:destroy, :create, :new]
     root to:'homes#top'
+    post '/guests/guest_sign_in', to: 'guests#new_guest'
   end
 
-  devise_for :admins
-  devise_for :users
+  devise_for :user, controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+ }
+  devise_for :admin, controllers: {
+  sessions: "admin/sessions"
+ }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
