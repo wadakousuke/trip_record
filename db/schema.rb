@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_05_11_150840) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.integer "category_id", null: false
-    t.integer "image_id", null: false
+    t.text "image_id", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.datetime "experience_at", null: false
