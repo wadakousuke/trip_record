@@ -24,6 +24,9 @@ class Public::PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+    @post.update
+    redirect_to post_path(@post)
   end
 
 
