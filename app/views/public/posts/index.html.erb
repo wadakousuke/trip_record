@@ -1,2 +1,19 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<h1>投稿一覧</h1>
+ <div class="d-flex flex-wrap ">
+        <% @posts.each do |posts| %>
+        <div class="ml-1">
+          <div>
+            <%= attachment_image_tag @posts, :image, fallback: "no-image.png",　style: "height: 250px; width:300px;" %>
+          </div>
+          <div>
+            <%= posts.title %>
+          </div>
+          <div>
+
+          </div>
+        </div>
+            <% end %>
+      </div>
+  </div>
+</div>
+

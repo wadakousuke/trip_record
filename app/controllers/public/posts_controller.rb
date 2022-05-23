@@ -16,6 +16,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @tag_list = Tag.all
   end
 
   def edit
@@ -36,5 +37,8 @@ class Public::PostsController < ApplicationController
 private
 def post_params
   params.require(:post).permit(:image, :user_id, :title, :body, :category_id, :address, :review, :experience_at)
+end
+def tag_params
+  params.require(:tag).permit(:name)
 end
 end
