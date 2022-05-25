@@ -3,16 +3,21 @@
         <% @posts.each do |posts| %>
         <div class="ml-1">
           <div>
-            <%= attachment_image_tag @posts, :image, fallback: "no-image.png",　style: "height: 250px; width:300px;" %>
+           <%= image_tag attachment_url(posts, :image, :fill, 300, 300, format: "jpg") %>
+           <%= posts.title %>
           </div>
           <div>
-            <%= posts.title %>
+            <%= posts.body %>
           </div>
           <div>
+            <%= posts.review %>
+          </div>
+          <div>
+            <%= posts.category.name %>
+          </div>
 
-          </div>
         </div>
-            <% end %>
+       <% end %>
       </div>
   </div>
 </div>
