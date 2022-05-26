@@ -3,7 +3,9 @@
         <% @posts.each do |posts| %>
         <div class="ml-1">
           <div>
-           <%= image_tag attachment_url(posts, :image, :fill, 300, 300, format: "jpg") %>
+           <% posts.image.first(0).each do |image| %>
+           <%= attachment_image_tag image, :image %>
+           <% end %>
            <%= posts.title %>
           </div>
           <div>
@@ -15,7 +17,6 @@
           <div>
             <%= posts.category.name %>
           </div>
-
         </div>
        <% end %>
       </div>
