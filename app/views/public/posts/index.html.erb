@@ -3,10 +3,10 @@
         <% @posts.each do |posts| %>
         <div class="ml-1">
           <div>
-           <% posts.image.first(0).each do |image| %>
-           <%= attachment_image_tag image, :image %>
-           <% end %>
-           <%= posts.title %>
+            <% posts.images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, format: 'png', size: "100x100" %>
+            <% end %>
+           <%= link_to posts.title, post_path(posts)%>
           </div>
           <div>
             <%= posts.body %>

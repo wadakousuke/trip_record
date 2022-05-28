@@ -1,2 +1,25 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<h1>投稿一覧</h1>
+ <div class="d-flex flex-wrap ">
+        <% @posts.each do |posts| %>
+        <div class="ml-1">
+          <div>
+            <% posts.images.first(1).each do |image| %>
+            <%= attachment_image_tag image, :image, format: 'png', size: "100x100" %>
+            <% end %>
+           <%= link_to posts.title, post_path(posts)%>
+          </div>
+          <div>
+            <%= posts.body %>
+          </div>
+          <div>
+            <%= posts.review %>
+          </div>
+          <div>
+            <%= posts.category.name %>
+          </div>
+        </div>
+       <% end %>
+      </div>
+  </div>
+</div>
+

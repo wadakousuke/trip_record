@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_11_150840) do
+ActiveRecord::Schema.define(version: 2022_05_28_154813) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_05_11_150840) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "post_id", null: false
-    t.integer "image_id", null: false
+    t.text "image_id", null: false
     t.index ["post_id"], name: "index_images_on_post_id"
     t.index ["post_id"], name: "index_post_images_on_post_id"
   end
