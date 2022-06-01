@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :tag_relations,dependent: :destroy, foreign_key: 'post_id'
   has_many :tags,through: :tag_relations
   belongs_to :category
+  geocoded_by :address #追記
+  after_validation :geocode, if: :address_changed?
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

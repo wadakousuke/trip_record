@@ -28,6 +28,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])  #クリックした投稿を取得。
     @post_tags = @post.tags
+    gon.post = @post
   end
 
   def update
