@@ -8,7 +8,17 @@
 </div>
 <div class="form-group">
 <label for="book_title">おすすめ度</label>
-<div><%= f.text_field :review %></div>
+<div class="main-rating">
+      <div class="ratings mb-3">
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+        <span class="fa fa-star-o" id="star"></span>
+      </div>
+      <div class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</div>
+       <%= f.hidden_field :review, id: "rating-value" %>
+    </div>
 </div>
 <div class="form-group">
 <div> <%= f.attachment_field :images_images, multiple: true  %></div>
@@ -39,3 +49,5 @@
 <%= f.submit "'投稿する", class: "btn btn-success " %>
 </div>
 <% end %>
+
+<%= javascript_pack_tag "reviews" %>

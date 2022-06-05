@@ -10,8 +10,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.datetime :experience_at, :null => false
       t.string :address, :null => false
       t.integer :review, :null => false
-      t.float :latitude, :null => false
-      t.float :longitude, :null => false
+      t.float :latitude
+      t.float :longitude
 
 
 

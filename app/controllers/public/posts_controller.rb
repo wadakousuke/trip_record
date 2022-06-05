@@ -15,10 +15,20 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-
-    @posts = Post.all
     @tag_list = Tag.all
+    @categories = Category.all
+    if params[:category_id]
+      @category = @categories.find(params[:category_id])
+      all_posts = @category.posts
+    elsif params[:tag_id]
+      @tag = @tag_list.find(params[:tag_id])
+      all_posts = @tag.posts
+    else
+      all_posts = Post.all
 
+    end
+    @posts = all_posts
+    @all_posts_count = all_posts.count
   end
 
   def edit
