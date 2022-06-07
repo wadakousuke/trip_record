@@ -1,25 +1,27 @@
-<h1>投稿一覧</h1>
- <div class="d-flex flex-wrap ">
-        <% @posts.each do |posts| %>
-        <div class="ml-1">
-          <div>
-            <% posts.images.first(1).each do |image| %>
-            <%= attachment_image_tag image, :image, format: 'png', size: "100x100" %>
-            <% end %>
-           <%= link_to posts.title, post_path(posts)%>
-          </div>
-          <div>
-            <%= posts.body %>
-          </div>
-          <div>
-            <%= posts.review %>
-          </div>
-          <div>
-            <%= posts.category.name %>
-          </div>
-        </div>
-       <% end %>
-      </div>
-  </div>
-</div>
+<section class="wrapper flex">
+	<div class="sidebar">
 
+	</div>
+	<div class="content">
+		<% if params[:category_id] %>
+			<h2 class="section-ttl"><%= @category.name %>の投稿一覧 (全<%= @all_posts_count %>件)</h2>
+		<% elsif params[:tag_id] %>
+			<h2 class="section-ttl"><%= @tag.name %>の投稿一覧 (全<%= @all_posts_count %>件)</h2>
+		<% else %>
+			<h2 class="section-ttl">投稿一覧 (全<%= @all_posts_count %>件)</h2>
+		<% end %>
+			<div class="posts">
+				<% @posts.each do |post| %>
+					<%= link_to posts_path(post) do %>
+					  <% post.images.first(1).each do |image| %>
+               <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+            <% end %>
+           	<div><%= link_to post.title, post_path(post)%></div>
+           	<div><%= post.body %></div>
+           	<div><%= post.review %></div>
+					　<div><%= post.category.name %></div>
+					<% end %>
+				<% end %>
+			</div>
+	</div>
+</section>
