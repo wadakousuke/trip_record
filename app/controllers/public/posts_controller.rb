@@ -6,6 +6,9 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     tag_list = params[:post][:name].split(nil)
+    @latitude = params[:latitude]
+    @longitude = params[:longitude]
+    @results = Geocoder.search([@latitude, @longitude])
     if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
@@ -45,6 +48,11 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update
     redirect_to post_path(@post)
+  end
+  def search
+    @latitude = params[:latitude]
+    @longitude = params[:longitude]
+    @results = Geocoder.search([@latitude, @longitude])
   end
 
 
