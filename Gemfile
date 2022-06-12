@@ -64,3 +64,5 @@ gem 'kaminari-bootstrap'
 gem 'gon'
 gem 'geocoder'
 gem 'dotenv-rails'
+gem 'enum_help'
+gem "bulma-rails", "~> 0.9.3"

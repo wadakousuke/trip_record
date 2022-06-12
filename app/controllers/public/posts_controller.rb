@@ -18,16 +18,17 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    gon.posts = Post.all
     @tag_list = Tag.all
     @categories = Category.all
     if params[:category_id]
       @category = @categories.find(params[:category_id])
-      all_posts = @category.posts
+      all_posts = @category.posts.published
     elsif params[:tag_id]
       @tag = @tag_list.find(params[:tag_id])
-      all_posts = @tag.posts
+      all_posts = @tag.posts.published
     else
-      all_posts = Post.all
+      all_posts = Post.published.all
 
     end
     @posts = all_posts
@@ -46,7 +47,7 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update
+    @post.update(post_params)
     redirect_to post_path(@post)
   end
   def search
@@ -55,10 +56,14 @@ class Public::PostsController < ApplicationController
     @results = Geocoder.search([@latitude, @longitude])
   end
 
+  def draft
+    @posts = Post.draft.all
+  end
+
 
 private
 def post_params
-  params.require(:post).permit(:user_id, :title, :body, :category_id, :address, :review, :experience_at, images_images: [])
+  params.require(:post).permit(:user_id, :title, :body, :status, :category_id, :address, :review, :experience_at, images_images: [])
 end
 def tag_params
   params.require(:tag).permit(:name)

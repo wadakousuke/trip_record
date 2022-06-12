@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope module: :public do
+    get 'posts/draft' => "posts#draft", as:"draft"
     resources :posts
     resources :users, only:[:update,:edit]
     get 'users/my_page' => "users#my_page", as:"my_page"

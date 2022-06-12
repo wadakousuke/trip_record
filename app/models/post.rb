@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   belongs_to :category
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+  enum status: { published: 0, draft: 1 }
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -20,5 +21,9 @@ class Post < ApplicationRecord
      new_tag_relation = Tag.find_or_create_by(name: new)
       self.tags << new_tag_relation
     end
+  end
+
+  def review_percentage
+      review.to_f*100/5
   end
 end

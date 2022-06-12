@@ -1,0 +1,21 @@
+<section class="wrapper flex">
+			<h2 class="section-ttl">投稿一覧 (全<%= @all_posts_count %>件)</h2>
+			<div class="posts">
+				<% @posts.each do |post| %>
+					<%= link_to posts_path(post) do %>
+					  <% post.images.first(1).each do |image| %>
+               <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+            <% end %>
+           	<div><%= link_to post.title, post_path(post)%></div>
+           	<div><%= post.body %></div>
+                 <div class="star-rating mb-2">
+                    <div class="star-rating-front" style="width: <%= post.review_percentage %>%">★★★★★</div>
+                    <div class="star-rating-back">★★★★★</div>
+                  </div>
+					　<div><%= post.category.name %></div>
+					　<div><%= link_to "編集する", edit_post_path(post) , class: "btn btn-sm btn-success " %></div>
+					<% end %>
+				<% end %>
+			</div>
+	</div>
+</section>
