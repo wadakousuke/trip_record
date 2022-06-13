@@ -1,76 +1,48 @@
-<h1>カテゴリから探す</h1>
-  <div>
-    <p>ホテル</p>
-    <%= link_to root_path do  %>
+<div class="columns" style="background-color: #f68b39">
+  <h1>カテゴリから探す</h1>
+  <div class="column is-3">
+    <p> <%= link_to "ホテル" , posts_path(category_id: "1")%></p>
+    <%= link_to  posts_path(category_id: "1")  do  %>
       <%= image_tag "hotel.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-  <div>
+  <div class="column is-3">
     <p>観光スポット</p>
-    <%= link_to root_path do  %>
+    <%= link_to  posts_path(category_id: "2")  do  %>
       <%= image_tag "kyoto.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-  <div>
+  <div class="column is-3">
     <p>飲食店</p>
-    <%= link_to root_path do  %>
+    <%= link_to  posts_path(category_id: "3")  do  %>
       <%= image_tag "restaurant.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-  <div>
+  <div class="column is-3">
     <p>駐車場</p>
-    <%= link_to root_path do  %>
+    <%= link_to  posts_path(category_id: "4")  do  %>
       <%= image_tag "parking.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-
-<h1>エリアから探す</h1>
-  <div>
-    <p>北海道</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "hokkaido.jpg", style:"height:200px; width:200px" %>
+</div>
+  <div class="columns" style="background-color: #f68b39">
+　  <h1>新着投稿</h1>
+　  <% @posts.each do |post| %>
+      <div class="column is-3">
+          <div>
+             <% post.images.first(1).each do |image| %>
+               <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+            <% end %>
+          </div>
+          <div>
+            <%= post.title %>
+          </div>
+          <div>
+            <div class="star-rating mb-2">
+              <div class="star-rating-front" style="width: <%= post.review_percentage %>%">★★★★★</div>
+              <div class="star-rating-back">★★★★★</div>
+            </div>
+          </div>
+      </div>
     <% end %>
   </div>
-  <div>
-    <p>宮城</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "miyagi.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div>
-    <p>山形</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "yamagata.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div>
-    <p>新潟</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "niigata.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div>
-    <p>東京</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "tokyo.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div>
-    <p>大阪</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "oosaka.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div>
-    <p>福岡</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "fukuoka.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div>
-    <p>沖縄</p>
-    <%= link_to root_path do  %>
-      <%= image_tag "okinawa.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-
