@@ -1,26 +1,52 @@
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-    <div class="row ml-5 mt-3">
-     <h2>登録がお済みではない方は</h2>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        ログイン画面
+      </h1>
     </div>
-    <div class="row ml-5 mt-3">
-     <%= link_to "こちら", new_user_session_path %>
-     <span> から新規登録してください。</span>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+       <%= render "public/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :メールアドレス, class: "label" %>
+          <p class="control has-icons-left">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "email", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <%= f.label :パスワード, class: "label" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+          <p class="control has-icons-left">
+          <%= f.password_field :password, autocomplete: "new-password", :placeholder => "password", class: "input" %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+        <div class="actions">
+          <%= f.submit "ログイン", class: "button is-success" %>
+        </div>
+        <% end %>
+            <div>
+             <h2>登録がお済みではない方は</h2>
+            </div>
+            <div>
+             <%= link_to "こちら", new_user_registration_path %>
+             <span> から新規登録してください。</span>
+            </div>
+      </div>
     </div>
-
-
+  </div>
+</section>
