@@ -1,3 +1,12 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        投稿一覧画面
+      </h1>
+    </div>
+  </div>
+</section>
 <section class="wrapper flex">
 	<div class="sidebar">
 		<h3>カテゴリ一覧</h3>
@@ -9,35 +18,53 @@
 			<%= link_to tag.name, posts_path(tag_id: tag.id) %>
 		<% end %>
 	</div>
-	<div class="content">
-		<% if params[:category_id] %>
-			<h2 class="section-ttl"><%= @category.name %>の投稿一覧 (全<%= @all_posts_count %>件)</h2>
-		<% elsif params[:tag_id] %>
-			<h2 class="section-ttl"><%= @tag.name %>の投稿一覧 (全<%= @all_posts_count %>件)</h2>
-		<% else %>
-			<h2 class="section-ttl">投稿一覧 (全<%= @all_posts_count %>件)</h2>
-		<% end %>
-			<div class="posts">
-				<% @posts.each do |post| %>
-					<%= link_to posts_path(post) do %>
-					  <% post.images.first(1).each do |image| %>
-               <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
-            <% end %>
-           	<div><%= link_to post.title, post_path(post)%></div>
-           	<div><%= post.body %></div>
-                 <div class="star-rating mb-2">
+</section>
+<section class="section mt-6">
+  <div class="columns">
+    <div class="column">
+     	<% if params[:category_id] %>
+        <h2 class="subtitle"><%= @category.name %>の投稿一覧 (全<%= @all_posts_count %>件)</h2>
+      <% elsif params[:tag_id] %>
+        <h2 class="subtitle"><%= @tag.name %>の投稿一覧 (全<%= @all_posts_count %>件)</h2>
+      <% else %>
+        <h2 class="subtitle">投稿一覧 (全<%= @all_posts_count %>件)</h2>
+      <% end %>
+		</div>
+	</div>
+  <div class="container is-flex">
+  	<div class="columns is-warp">
+  	 <div class="column is-4">
+  	  <% @posts.each do |post| %>
+        <div class="card mr-6">
+            <header class="card-header">
+              <p class="card-header-title">
+                <%= link_to post.title, post_path(post)%>
+              </p>
+            </header>
+            <div class="card-content">
+                <div class="card-image">
+                  <%= link_to posts_path(post) do %>
+      　　　　　　　　　　　　<% post.images.first(1).each do |image| %>
+                     <%= attachment_image_tag image, :image, format: 'jpg', size: "250x250" %>
+                  　<% end %>
+                  <% end %>
+                </div>
+                <div class="content average-score">
+                   <div class="star-rating mb-2">
                     <div class="star-rating-front" style="width: <%= post.review_percentage %>%">★★★★★</div>
                     <div class="star-rating-back">★★★★★</div>
-                  </div>
-					　<div><%= post.category.name %></div>
-					<% end %>
-				<% end %>
-			</div>
-	</div>
+                   </div>
+                </div>
+                <div class="content"><%= post.body %></div>
+                <div class="content"><%= post.category.name %></div>
+            </div>
+        </div>
+      <% end %>
+  	  </div>
+  	</div>
+  </div>
 </section>
 <div id="map"></div>
-
-
 <script>
 let map;
 let marker = []; // マーカーを複数表示させたいので、配列化

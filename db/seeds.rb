@@ -8,4 +8,3 @@
 Category.create(:name => 'ホテル')
 Category.create(:name => '観光スポット')
 Category.create(:name => '飲食店')
-Category.create(:name => '駐車場')

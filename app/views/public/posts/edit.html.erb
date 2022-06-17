@@ -1,63 +1,95 @@
-<div class="ccontainer">
-  <div class="row ml-5 mt-5">
-    <h1>会員情報編集</h1>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        投稿編集画面
+      </h1>
+    </div>
   </div>
-  <div class="row">
-    <%= form_with model: @post, url: post_path, method: :patch do |f| %>
-   <div class="form-group">
-<label form="book_title">タイトル</label>
-<div><%= f.text_field :title %></div>
-</div>
-<div class="form-group">
-<label for="book_title">おすすめ度</label>
-<div class="main-rating">
-      <div class="ratings mb-3">
-        <span class="fa fa-star-o" id="star"></span>
-        <span class="fa fa-star-o" id="star"></span>
-        <span class="fa fa-star-o" id="star"></span>
-        <span class="fa fa-star-o" id="star"></span>
-        <span class="fa fa-star-o" id="star"></span>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+           <%= form_with model: @post, url: post_path, method: :patch do |f| %>
+          <div class="form-group">
+          <div class="field">
+           <%= f.label :"タイトル" %>
+            <p class="control has-icons-left">
+             <%=f.text_field :title, autofocus: true, class: "input"%>
+              <span class="icon is-small is-left">
+                <i class="fas fa-pen"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+           <%= f.label :"レビュー" %>
+            <p class="control has-icons-left">
+             <%= f.text_area :body, autofocus: true, class: "input textarea is-large" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-pen"></i>
+              </span>
+            </p>
+          </div>
+          <div class="form-group">
+          <label for="book_title">おすすめ度</label>
+          <div class="main-rating">
+                <div class="ratings mb-3">
+                  <span class="fa fa-star-o" id="star"></span>
+                  <span class="fa fa-star-o" id="star"></span>
+                  <span class="fa fa-star-o" id="star"></span>
+                  <span class="fa fa-star-o" id="star"></span>
+                  <span class="fa fa-star-o" id="star"></span>
+                  <span class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</span>
+                </div>
+                 <%= f.hidden_field :review, id: "rating-value" %>
+              </div>
+          </div>
+          <div class="form-group">
+          <div> <%= f.attachment_field :images_images, multiple: true %></div>
+          </div>
+          <div class="field">
+           <%= f.label :"住所" %>
+            <p class="control has-icons-left">
+              <%=f.text_field :address, autofocus: true, class: "input"%>
+              <span class="icon is-small is-left">
+                <i class="fas fa-map"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+           <%= f.label :"体験日" %>
+            <p class="control">
+              <%= f.date_field :experience_at, autofocus: true, class: "input"%>
+            </p>
+          </div>
+          <div class="field">
+           <%= f.label :"カテゴリ" %>
+            <p class="control">
+              <%= f.collection_select :category_id, Category.all, :id, :name, autofocus: true, class: "input"%>
+            </p>
+          </div>
+          <div class="field">
+           <%= f.label :"タグ" %>
+            <p class="control">
+              <%= f.text_field :name,autofocus: true, class: "input"%>
+            </p>
+          </div>
+           <%= f.hidden_field :user_id, :value => current_user.id %>
+          <div class="field">
+            <p class="control">
+              <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"}%>
+            </p>
+          </div>
+          <div class="form-group">
+          <%= f.submit "投稿する", class: "button is-success" %>
+          </div>
+          <% end %>
       </div>
-      <div class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</div>
-       <%= f.hidden_field :review, id: "rating-value" %>
     </div>
-</div>
-<div class="form-group">
-<div> <%= f.attachment_field :images_images, multiple: true  %></div>
-</div>
-
-<div class="form-group">
-<label for="book-opinion">本文</label>
-<div><%= f.text_area :body %></div>
-</d牡蠣
-</div>
-<div class="form-group">
-<label for="book-opinion">住所</label>
-<div><%= f.text_field :address %></div>
-
-</div>
-<div class="form-group">
-<label for="book-opinion">体験日</label>
-<div><%= f.date_field :experience_at%></div>
-</div>
-<label for="book-opinion">カテゴリ</label>
-<div><%= f.collection_select :category_id, Category.all, :id, :name %></div>
-</div>
-<div>
-<label for="book-opinion">タグ</label>
-<div><%= f.text_field :name %></div>
-</div>
- <%= f.hidden_field :user_id, :value => current_user.id %>
-<div class="form-group">
-  <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
-</div>
-<div class="form-group">
-       <%= f.submit "変更を保存",class: "btn btn-success ml-5"%>
-       <% end %>
-    </div>
-
-   </div>
-</div>
-
+  </div>
+</section>
 <%= javascript_pack_tag "reviews" %>
+
+
 

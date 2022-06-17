@@ -13,6 +13,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
+      flash.now[:alert] = '投稿に失敗しました。'
       render:new
     end
   end

@@ -1,30 +1,23 @@
-<div class="columns" style="background-color: #f68b39">
+ <div class="columns is-centered" style="background-color: #f68b39">
   <h1>カテゴリから探す</h1>
-  <div class="column is-3">
+  <div class="column is-4">
     <p> <%= link_to "ホテル" , posts_path(category_id: "1")%></p>
     <%= link_to  posts_path(category_id: "1")  do  %>
       <%= image_tag "hotel.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-  <div class="column is-3">
+  <div class="column is-4">
     <p>観光スポット</p>
     <%= link_to  posts_path(category_id: "2")  do  %>
       <%= image_tag "kyoto.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-  <div class="column is-3">
+  <div class="column is-4">
     <p>飲食店</p>
     <%= link_to  posts_path(category_id: "3")  do  %>
       <%= image_tag "restaurant.jpg", style:"height:200px; width:200px" %>
     <% end %>
   </div>
-  <div class="column is-3">
-    <p>駐車場</p>
-    <%= link_to  posts_path(category_id: "4")  do  %>
-      <%= image_tag "parking.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-</div>
   <div class="columns" style="background-color: #f68b39">
 　  <h1>新着投稿</h1>
 　  <% @posts.each do |post| %>
