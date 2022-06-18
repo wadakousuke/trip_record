@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     post '/guests/guest_sign_in', to: 'guests#new_guest'
   end
   namespace :admin do
-    resources :posts, except:[:new, :create]
+    resources :posts, except:[:new, :create, :edit,:update]
     resources :categories, only:[:update, :show, :index, :edit]
     resources :users, except:[:destroy, :create, :new]
     root to:'homes#top'

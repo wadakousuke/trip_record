@@ -1,41 +1,29 @@
- <div class="columns is-centered" style="background-color: #f68b39">
-  <h1>カテゴリから探す</h1>
-  <div class="column is-4">
-    <p> <%= link_to "ホテル" , posts_path(category_id: "1")%></p>
-    <%= link_to  posts_path(category_id: "1")  do  %>
-      <%= image_tag "hotel.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div class="column is-4">
-    <p>観光スポット</p>
-    <%= link_to  posts_path(category_id: "2")  do  %>
-      <%= image_tag "kyoto.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div class="column is-4">
-    <p>飲食店</p>
-    <%= link_to  posts_path(category_id: "3")  do  %>
-      <%= image_tag "restaurant.jpg", style:"height:200px; width:200px" %>
-    <% end %>
-  </div>
-  <div class="columns" style="background-color: #f68b39">
-　  <h1>新着投稿</h1>
-　  <% @posts.each do |post| %>
-      <div class="column is-3">
-          <div>
-             <% post.images.first(1).each do |image| %>
-               <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
-            <% end %>
-          </div>
-          <div>
-            <%= post.title %>
-          </div>
-          <div>
-            <div class="star-rating mb-2">
-              <div class="star-rating-front" style="width: <%= post.review_percentage %>%">★★★★★</div>
-              <div class="star-rating-back">★★★★★</div>
-            </div>
-          </div>
+<section class="section">
+  <article class="media">
+    <div class="media-content">
+      <div class="content has-text-centered">
+        <p>
+          <strong class="is-size-1" style="font-family: cursive;"></strong>
+        </p>
       </div>
-    <% end %>
+      <div class="columns is-centered">
+        <div class="column is-5">
+          <br>
+          <%= link_to "ログイン", new_user_session_path, class: "button is-success is-fullwidth" %>
+          <br>
+          <%= link_to "新規登録", new_user_registration_path, class: "button is-success is-fullwidth" %>
+          <br>
+           <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post,class: "button is-success is-fullwidth" %>
+        </div>
+      </div>
+    </div>
+  </article>
+  <br>
+  <div class="columns is-centered">
+    <div class="column">
+      <figure>
+        <div class="main-image"></div>
+      </figure>
+    </div>
   </div>
+</section>

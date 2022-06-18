@@ -8,3 +8,8 @@
 Category.create(:name => 'ホテル')
 Category.create(:name => '観光スポット')
 Category.create(:name => '飲食店')
+
+Admin.create(
+  email: "a@a",
+  password: "aaaaaa"
+)
