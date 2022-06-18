@@ -1,21 +1,50 @@
-<section class="wrapper flex">
-			<h2 class="section-ttl">投稿一覧 (全<%= @all_posts_count %>件)</h2>
-			<div class="posts">
-				<% @posts.each do |post| %>
-					<%= link_to posts_path(post) do %>
-					  <% post.images.first(1).each do |image| %>
-               <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
-            <% end %>
-           	<div><%= link_to post.title, post_path(post)%></div>
-           	<div><%= post.body %></div>
-                 <div class="star-rating mb-2">
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        下書き一覧画面
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="container">
+      <div class="columns is-multiline ">
+         <% @posts.each do |post| %>
+        <div class="column is-3 is-flex">
+          <div class="card ">
+            <header class="card-header">
+              <p class="card-header-title">
+                <%= link_to post.title, post_path(post)%>
+              </p>
+            </header>
+          <div class="card is-shady">
+            <div class="card-image image is-4by3">
+              <%= link_to posts_path(post) do %>
+      　　　　　　　　　<% post.images.first(1).each do |image| %>
+                  <%= attachment_image_tag image, :image, format: 'jpg', size: "250x250" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="card-content">
+               <div class="content average-score">
+                   <div class="star-rating mb-2">
                     <div class="star-rating-front" style="width: <%= post.review_percentage %>%">★★★★★</div>
                     <div class="star-rating-back">★★★★★</div>
-                  </div>
-					　<div><%= post.category.name %></div>
-					　<div><%= link_to "編集する", edit_post_path(post) , class: "btn btn-sm btn-success " %></div>
-					<% end %>
-				<% end %>
-			</div>
-	</div>
-</section>
+                   </div>
+                </div>
+                <div class="card-content"><%= post.body %></div>
+                <div class="card-content"><%= post.category.name %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<section class="container">
+  <div class="columns is-mobile is-centered has-text-centered">
+    <div class="column is-3 is-centerd">
+       <nav class="pagination is-rounded" role="navigation" aria-label="pagination"><%= paginate @posts %></nav>
+    </div>
+  </div>

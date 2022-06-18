@@ -19,21 +19,25 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    gon.posts = Post.all
     @tag_list = Tag.all
     @categories = Category.all
     if params[:category_id]
       @category = @categories.find(params[:category_id])
-      all_posts = @category.posts.published
+      all_posts = @category.posts.published.page(params[:page]).per(8)
+      gon.posts = all_posts
+      posts_count = @category.posts.published.all
     elsif params[:tag_id]
       @tag = @tag_list.find(params[:tag_id])
-      all_posts = @tag.posts.published
+      all_posts = @tag.posts.published.page(params[:page]).per(8)
+      gon.posts = all_posts
+      posts_count = @tag.posts.published.all
     else
-      all_posts = Post.published.all
-
+      all_posts = Post.published.page(params[:page]).per(8)
+      gon.posts = all_posts
+      posts_count = Post.published.all
     end
     @posts = all_posts
-    @all_posts_count = all_posts.count
+    @all_posts_count = posts_count.count
   end
 
   def edit
@@ -58,7 +62,7 @@ class Public::PostsController < ApplicationController
   end
 
   def draft
-    @posts = Post.draft.all
+    @posts = Post.draft.page(params[:page]).per(8)
   end
 
 
