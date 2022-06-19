@@ -12,13 +12,13 @@
     <div class="columns is-centered">
       <div class="column is-7">
         <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-            　<% @post.images.each do |image| %>
-                <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
-              <% end %>
-            </figure>
-          </div>
+          <% @post.images.each do |image| %>
+            <div class="card-image">
+              <figure class="image is-4by3 mt-3">
+                  <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+              </figure>
+            </div>
+          <% end %>
           <div class="card-content">
             <div class="media">
               <div class="media-content">
@@ -31,18 +31,45 @@
                   <th>レビュー</th>
                 </tr>
                 <tr>
-                      <td><%= @post.body %></td>
-                      <td><%= @post.category.name %></td>
-                      <td>
-                        <% @post_tags.each do |posts| %>
-                        <%= posts.name %>
-                        <% end %>
-                      </td>
+                  <td><%= @post.body %></td>
+                </tr>
+                <tr>
+                  <th>カテゴリ</th>
+                </tr>
+                <tr>
+                  <td><%= @post.category.name %></td>
+                </tr>
+                <tr>
+                  <th>タグ</th>
+                </tr>
+                <tr>
+                  <td>
+                    <% @post_tags.each do |posts| %>
+                    <%= posts.name %>
+                    <% end %>
+                  </td>
                 </tr>
               </table>
               <% if @post.user_id == current_user.id %>
                 <%= link_to "編集画面へ", edit_post_path(@post), class: "button is-success" %>
                 <%= link_to "削除する", edit_post_path(@post), class: "button is-danger" %>
+              <% end %>
+            </div>
+            <div>
+              <p>コメント件数：<%= @post.post_comments.count %></p>
+              <% @post.post_comments.each do |post_comment| %>
+                <span><%= post_comment.user.first_name %></span>
+                <span><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+                <% if post_comment.user == current_user %>
+                  <span><%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %></span>
+                <% end %>
+                 <div><%= post_comment.comment %></div>
+              <% end %>
+            </div>
+            <div>
+              <%= form_with model: [@post, @post_comment] do |f| %>
+                <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに",class: "input textarea is-large" %>
+                <%= f.submit "送信する" %>
               <% end %>
             </div>
           </div>

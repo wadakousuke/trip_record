@@ -17,8 +17,7 @@
                 <tr>
                  <th>会員ID</th>
                  <th>氏名</th>
-                 <th>メールアドレス</th>
-                 <th>ステータス</th>
+                 <th>投稿件数</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,13 +25,8 @@
                 <tr>
                   <td><%= user.id %></td>
                   <% user_name = user.first_name + user.last_name %>
-                  <td><%= link_to user_name, admin_user_path(user.id) %></td>
-                  <td><%= user.email %></td>
-                    <% if user.is_active == true %>
-                      <td class="text-success font-weight-bold">有効</td>
-                    <% else %>
-                      <td class="text-secondary font-weight-bold">退会</td>
-                    <% end %>
+                  <td><%= link_to user_name, user_path(user.id) %></td>
+                  <td><%= user.posts.count %>件</td>
                 </tr>
                <% end %>
               </tbody>

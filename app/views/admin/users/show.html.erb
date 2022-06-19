@@ -1,2 +1,50 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+ <section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+       会員情報詳細
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-12">
+        <div class="box-content">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+           <tbody>
+              <tr>
+                <th>会員ID</th>
+                <th><%= @user.id %></th>
+              </tr>
+              <tr>
+                <th>氏名</th>
+                <th><%= @user.first_name %><%= @user.last_name %></th>
+              </tr>
+              <tr>
+                <th>フリガナ</th>
+                <th><%= @user.first_name_kana %><%= @user.last_name_kana %></th>
+                </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <th><%= @user.email %></th>
+              </tr>
+              <tr>
+                <th>ステータス</th>
+                  <% if @user.is_active == true %>
+                    <th class="text-success font-weight-bold">有効</th>
+                  <% else %>
+                    <th class="text-secondary font-weight-bold">退会済み</th>
+                  <% end %>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex flex-row bd-highlight mb-3 ml-5">
+            <div class="ml-5"><%= link_to "編集する", edit_admin_user_path(@user.id), class:"button is-success"%></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

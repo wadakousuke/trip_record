@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   accepts_attachments_for :images, attachment: :image
   has_many :tag_relations,dependent: :destroy, foreign_key: 'post_id'
   has_many :tags,through: :tag_relations
+  has_many :post_comments, dependent: :destroy
   belongs_to :category
+  belongs_to :user
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   enum status: { published: 0, draft: 1 }

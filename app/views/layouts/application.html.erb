@@ -44,23 +44,23 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <% if admin_signed_in? %>
-              <%= link_to "投稿一覧" , admin_posts_path, class: "btn" %>
-              <%= link_to "ユーザー一覧" , admin_users_path, class: "btn" %>
-              <%= link_to "ログアウト" , destroy_admin_session_path, method: :delete, class: "btn"%>
+              <%= link_to "投稿一覧" , admin_posts_path,class: "mr-3"%>
+              <%= link_to "ユーザー一覧" , admin_users_path,class: "mr-3" %>
+              <%= link_to "ログアウト" , destroy_admin_session_path, method: :delete,class: "mr-3" %>
             <% else %>
             <% if user_signed_in? %>
-             <%= link_to "マイページ" , root_path, class: "btn btn-light border mr-3" %>
-             <%= link_to "新規投稿" , new_post_path, class: "btn btn-light border mr-3" %>
-             <%= link_to "投稿一覧" , posts_path, class: "btn btn-light border mr-3" %>
-             <%= link_to "下書き" , draft_path, class: "btn btn-light border mr-3" %>
-             <%= link_to "ログアウト" , destroy_user_session_path, method: :delete, class: "btn btn-light border mr-3"   %>
+             <%= link_to "マイページ" , user_path(current_user.id),class: "mr-3" %>
+             <%= link_to "新規投稿" , new_post_path,class: "mr-3" %>
+             <%= link_to "投稿一覧" , posts_path,class: "mr-3" %>
+             <%= link_to "ユーザー一覧" , users_path,class: "mr-3" %>
+             <%= link_to "下書き一覧" , draft_path,class: "mr-3" %>
+             <%= link_to "ログアウト" , destroy_user_session_path, method: :delete,class: "mr-3" %>
             <% else %>
-             <%= link_to "About" , homes_about_path, class: "btn btn-light border mr-3"   %>
-             <%= link_to "投稿一覧" , posts_path, class: "btn btn-light border mr-3" %>
-             <%= link_to "新規登録" , new_user_registration_path, class: "btn btn-light border mr-3"  %>
-             <%= link_to "ログイン" , new_user_session_path, class: "btn btn-light border mr-3"   %>
-             <%= link_to "管理者ログイン" , new_admin_session_path, class: "btn btn-light border mr-3"  %>
-             <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post,class: "btn btn-light border mr-3"  %>
+             <%= link_to "投稿一覧" , posts_path,class: "mr-3" %>
+             <%= link_to "新規登録" , new_user_registration_path,class: "mr-3"  %>
+             <%= link_to "ログイン" , new_user_session_path,class: "mr-3" %>
+             <%= link_to "管理者ログイン" , new_admin_session_path,class: "mr-3" %>
+             <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post,class: "mr-3" %>
             <% end %>
             <% end %>
           </div>

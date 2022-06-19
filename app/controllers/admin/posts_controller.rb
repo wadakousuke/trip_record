@@ -1,10 +1,12 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     all_posts = Post.page(params[:page]).per(8)
     posts_count = Post.all
     @posts = all_posts
     @all_posts_count = posts_count.count
   end
+
   def show
     @post = Post.find(params[:id])  #クリックした投稿を取得。
     @post_tags = @post.tags

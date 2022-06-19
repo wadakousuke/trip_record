@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+   before_action :authenticate_user!, except: [:index]
   def new
     @post = Post.new
   end
@@ -31,6 +32,10 @@ class Public::PostsController < ApplicationController
       all_posts = @tag.posts.published.page(params[:page]).per(8)
       gon.posts = all_posts
       posts_count = @tag.posts.published.all
+    elsif params[:user_id]
+      all_posts = @user.posts.published.page(params[:page]).per(8)
+      gon.posts = all_posts
+      posts_count = @user.posts.published.all
     else
       all_posts = Post.published.page(params[:page]).per(8)
       gon.posts = all_posts
@@ -47,6 +52,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])  #クリックした投稿を取得。
     @post_tags = @post.tags
+    @post_comment = PostComment.new
     gon.post = @post
   end
 
@@ -62,7 +68,8 @@ class Public::PostsController < ApplicationController
   end
 
   def draft
-    @posts = Post.draft.page(params[:page]).per(8)
+    @user = current_user
+    @posts = @user.posts.draft.page(params[:page]).per(8)
   end
   def destroy
     post = Post.find(params[:id])

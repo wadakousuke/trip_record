@@ -5,9 +5,9 @@ def after_sign_in_path_for(resource)
     when User
       posts_path
     when Admin
-      admin_root_path
+      admin_posts_path
     end
-  end
+end
 
   protected
 

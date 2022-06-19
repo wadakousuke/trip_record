@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   scope module: :public do
     get 'posts/draft' => "posts#draft", as:"draft"
-    resources :posts
-    resources :users, only:[:update,:edit]
-    get 'users/my_page' => "users#my_page", as:"my_page"
+    resources :posts do
+     resources :post_comments, only: [:create, :destroy]
+    end
     get 'users/confirm' => "users#confirm", as:"confirm"
     patch 'users/withdraw' => "users#withdraw", as:"withdraw"
+    resources :users, only:[:update,:edit, :index, :show]
+
     root to:'homes#top'
-    get 'homes/about'
     post '/guests/guest_sign_in', to: 'guests#new_guest'
   end
   namespace :admin do

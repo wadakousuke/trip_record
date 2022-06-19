@@ -11,7 +11,7 @@
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-5">
-       <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
         <div class="field">
           <%= f.label :"姓" %>
           <p class="control has-icons-left">
@@ -55,12 +55,6 @@
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
-          </p>
-        </div>
-        <div class="field">
-          <%= f.label :会員ステータス, class: "label" %>
-          <p class="control has-icons-left">
-           <%= f.radio_button :is_active, :true %><%= f.label :is_active, "有効" %><%= f.radio_button :is_active,  :false  %><%= f.label :is_active, "退会" %>
           </p>
         </div>
         <div class="actions">
