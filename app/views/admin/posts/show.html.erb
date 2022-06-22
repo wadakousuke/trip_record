@@ -12,13 +12,13 @@
     <div class="columns is-centered">
       <div class="column is-7">
         <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-            　<% @post.images.each do |image| %>
-                <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
-              <% end %>
-            </figure>
-          </div>
+          <% @post.images.each do |image| %>
+            <div class="card-image">
+              <figure class="image is-4by3 mt-3">
+                  <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+              </figure>
+            </div>
+          <% end %>
           <div class="card-content">
             <div class="media">
               <div class="media-content">
@@ -31,19 +31,28 @@
                   <th>レビュー</th>
                 </tr>
                 <tr>
-                      <td><%= @post.body %></td>
-                      <td><%= @post.category.name %></td>
-                      <td>
-                        <% @post_tags.each do |posts| %>
-                        <%= posts.name %>
-                        <% end %>
-                      </td>
+                  <td><%= @post.body %></td>
+                </tr>
+                <tr>
+                  <th>カテゴリ</th>
+                </tr>
+                <tr>
+                  <td><%= @post.category.name %></td>
+                </tr>
+                <tr>
+                  <th>タグ</th>
+                </tr>
+                <tr>
+                  <td>
+                    <% @post_tags.each do |posts| %>
+                    <%= posts.name %>
+                    <% end %>
+                  </td>
                 </tr>
               </table>
-                <%= link_to "削除する", admin_post_path(@post),method: :delete ,class: "button is-danger" %>
+                   <%= link_to "削除する", admin_post_path(@post),method: :delete ,class: "button is-danger" %>
             </div>
           </div>
         </div>
       </div>
 </section>
-

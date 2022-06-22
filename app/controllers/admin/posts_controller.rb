@@ -1,5 +1,6 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
+  
   def index
     all_posts = Post.page(params[:page]).per(8)
     posts_count = Post.all
