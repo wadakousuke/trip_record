@@ -10,6 +10,6 @@ class Public::GuestsController < ApplicationController
    end
 
    sign_in user
-   redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+   redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
  end
 end
