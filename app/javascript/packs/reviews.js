@@ -9,21 +9,21 @@ const ratingValueDisplay = document.getElementById("rating-value-display");
 let index;
 
 // reveiwの投稿ページに遷移するとstars.lengthの値（5）だけ繰り返し
-for(let i=0; i<stars.length; i++){
-	console.log(stars.length)
+for(let i=0; i<stars; i++){
+	console.log(stars)
 	// 星にカーソルが乗ったときに実行する関数を定義
 	stars[i].addEventListener("mouseover",function(){
 		// stars.lengthの値（5）だけ繰り返し
 		// つまり、星カーソルが乗った時、5回繰り返される
-		for(let j=0; j<stars.length; j++){
-			console.log(stars.length)
+		for(let j=0; j<stars; j++){
+			console.log(stars)
 			// まず全て星をくり抜く
 			stars[j].classList.remove("fa-star");
 			stars[j].classList.add("fa-star-o");
 		}
 		// そのあと星の数だけ以下の関数が繰り返される。
 		for(let j=0; j<=i; j++){
-			console.log(stars.length)
+			console.log(stars)
 			stars[j].classList.remove("fa-star-o");
 			// カーソルが乗った星まで星を塗りつぶす
 			stars[j].classList.add("fa-star");
@@ -39,7 +39,7 @@ for(let i=0; i<stars.length; i++){
 	// 星からカーソルが離れたときに実行される関数
 	stars[i].addEventListener("mouseout",function(){
 		// まず5回繰り返す
-		for(let j=0; j<stars.length; j++){
+		for(let j=0; j<stars; j++){
 			// まず全ての星をくり抜く
 			stars[j].classList.remove("fa-star");
 			stars[j].classList.add("fa-star-o");
