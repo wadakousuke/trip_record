@@ -87,7 +87,7 @@
    <div class="column">
       <div id="map">
             <script>
-            document.addEventListener("turbolinks:load", function () {
+
                 let map;
                 let marker = []; // マーカーを複数表示させたいので、配列化
                 let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
@@ -104,7 +104,7 @@
                       zoom: 7
                        });
                        window.onload = function(){
-                            makeMap(35.446806, 139.636163); 
+                            makeMap(35.446806, 139.636163);
                         };
                        // map.setCenterで地図が初期位置に移動
                   　　　  map.setCenter(LatLng);
@@ -134,7 +134,7 @@
                           });
                         }
                       });
-                    })}
+                    }
             </script>
             <script async defer
                   src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap">
