@@ -92,7 +92,6 @@
                 let marker = []; // マーカーを複数表示させたいので、配列化
                 let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
                 const posts = gon.posts; // コントローラーで定義したインスタンス変数を変数に代入
-                const post_counts = posts_count
                 function initMap(){
                 // 現在位置の特定
                  navigator.geolocation.getCurrentPosition(function (position){
@@ -107,7 +106,7 @@
                     map.setCenter(LatLng);
                         // forは繰り返し処理
 
-                        for (let i = 0; i < post_counts; i++){
+                        for (let i = 0; i < @all_posts_count; i++){
                           // studios[i]は変数iのユーザーを取得している
                           marker[i] = new google.maps.Marker({
                             map: map,
