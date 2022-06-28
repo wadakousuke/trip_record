@@ -102,12 +102,10 @@
                       center: LatLng,
                       zoom: 7
                        });
-                       window.onload = function(){
+                  　　　  map.setCenter(LatLng);
+                             window.onload = function(){
                             makeMap(35.446806, 139.636163);
                         };
-                       // map.setCenterで地図が初期位置に移動
-                  　　　  map.setCenter(LatLng);
-                        // forは繰り返し処理
                         for (let i = 0; i <  @all_posts_count i++){
                           // studios[i]は変数iのユーザーを取得している
                           marker[i] = new google.maps.Marker({
