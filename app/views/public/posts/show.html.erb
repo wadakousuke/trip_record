@@ -81,7 +81,7 @@
    <div class="column">
       <div id="map">
            <script>
-           document.addEventListener("turbolinks:load", function () {
+
               let map;
 
               function initMap() {
@@ -96,7 +96,9 @@
                   // マップの倍率はお好みで
                   zoom: 12,
                 });
-
+ 　　　　　　　　　　　　　window.onload = function(){
+                            makeMap(35.446806, 139.636163);
+                        };
                 marker = new google.maps.Marker({
                   // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
                   position: {
@@ -105,7 +107,7 @@
                   },
                   map: map
                 });
-              })}
+              }
             </script>
 
 <script async defer
