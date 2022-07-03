@@ -25,20 +25,16 @@ class Public::PostsController < ApplicationController
     if params[:category_id]
       @category = @categories.find(params[:category_id])
       all_posts = @category.posts.published.page(params[:page]).per(8)
-      gon.posts = all_posts
       posts_count = @category.posts.published.all
     elsif params[:tag_id]
       @tag = @tag_list.find(params[:tag_id])
       all_posts = @tag.posts.published.page(params[:page]).per(8)
-      gon.posts = all_posts
       posts_count = @tag.posts.published.all
     elsif params[:user_id]
       all_posts = @user.posts.published.page(params[:page]).per(8)
-      gon.posts = all_posts
       posts_count = @user.posts.published.all
     else
       all_posts = Post.published.page(params[:page]).per(8)
-      gon.posts = all_posts
       posts_count = Post.published.all
     end
     @posts = all_posts
