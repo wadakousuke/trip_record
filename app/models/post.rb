@@ -1,8 +1,7 @@
 class Post < ApplicationRecord
-  has_many :images, dependent: :destroy
-  accepts_attachments_for :images, attachment: :image
+  has_many_attached :images
   has_many :tag_relations,dependent: :destroy, foreign_key: 'post_id'
-  has_many :tags,through: :tag_relations
+  has_many :tags,through: :tag_relations, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   belongs_to :category
   belongs_to :user

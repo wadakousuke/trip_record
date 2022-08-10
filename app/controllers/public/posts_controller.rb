@@ -43,6 +43,9 @@ class Public::PostsController < ApplicationController
 
   def edit
      @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_to  posts_path
+    end
   end
 
   def show
@@ -69,13 +72,17 @@ class Public::PostsController < ApplicationController
   end
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path
+    if post.user != current_user
+      redirect_to  post_path(params[:id])
+    else
+      post.destroy
+      redirect_to posts_path
+    end
   end
 
 private
 def post_params
-  params.require(:post).permit(:user_id, :title, :body, :status, :category_id, :address, :review, :experience_at, images_images: [])
+  params.require(:post).permit(:user_id, :title, :body, :status, :category_id, :address, :review, :experience_at, images: [])
 end
 def tag_params
   params.require(:tag).permit(:name)

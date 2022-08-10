@@ -12,10 +12,10 @@
     <div class="columns is-centered">
       <div class="column is-7">
         <div class="card">
-          <% @post.images.each do |image| %>
+            <% @post.images.each do |image| %>
             <div class="card-image">
               <figure class="image is-4by3 mt-3">
-                  <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+                  <%= image_tag image, format: 'jpg', size: "100x100" %>
               </figure>
             </div>
           <% end %>
@@ -52,7 +52,7 @@
               </table>
               <% if @post.user_id == current_user.id %>
                 <%= link_to "編集画面へ", edit_post_path(@post), class: "button is-success" %>
-                <%= link_to "削除する", edit_post_path(@post), class: "button is-danger" %>
+                <%= link_to "削除する", post_path(@post), class: "button is-danger", method: :delete  %>
               <% end %>
             </div>
             <div>

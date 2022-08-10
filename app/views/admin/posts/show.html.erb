@@ -15,7 +15,7 @@
           <% @post.images.each do |image| %>
             <div class="card-image">
               <figure class="image is-4by3 mt-3">
-                  <%= attachment_image_tag image, :image, format: 'jpg', size: "100x100" %>
+                  <%= image_tag image, format: 'jpg', size: "100x100" %>
               </figure>
             </div>
           <% end %>

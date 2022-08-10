@@ -41,7 +41,7 @@
           </div>
 
           <div class="form-group">
-          <div> <%= f.attachment_field :images_images, multiple: true %></div>
+          <div><%= f.file_field :images, multiple: true %></div>
           </div>
           <div class="field">
            <%= f.label :"住所" %>
@@ -65,7 +65,7 @@
             </p>
           </div>
           <div class="field">
-           <%= f.label :"タグ" %>
+           <%= f.label :"タグ （スペース区切りで複数登録可）" %>
             <p class="control">
               <%= f.text_field :name,autofocus: true, class: "input"%>
             </p>
