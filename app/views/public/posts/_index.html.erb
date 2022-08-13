@@ -1,17 +1,17 @@
 <section class="container">
       <div class="columns is-multiline ">
          <% posts.each do |post| %>
-        <div class="column is-3 is-flex">
+        <div class="column is-3 is-flex ">
           <div class="card ">
             <header class="card-header">
               <p class="card-header-title">
                 <%= link_to post.title, post_path(post)%>
               </p>
             </header>
-            <div class="card-image image ">
+            <div class="card-image image is-5by4 ">
               <%= link_to post_path(post) do %>
       　　　　　　　　　<% post.images.first(1).each do |image| %>
-                  <%= image_tag image, format: 'jpg', height: "100px" %>
+                  <%= image_tag image, format: 'jpg'%>
                 <% end %>
               <% end %>
             </div>
